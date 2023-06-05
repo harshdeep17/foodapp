@@ -1,6 +1,7 @@
 const User = require('../models/user.model');
 const nodemailer = require('nodemailer');
 const speakeasy = require('speakeasy');
+const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 const sendOTP = async (email, otp) => {
@@ -39,15 +40,14 @@ const generateOTP = (secret) => {
 };
 
 const validateOTP = (otp, secret) => {
-  console.log(otp, secret);
   return speakeasy.totp.verify({
     secret,
     encoding: 'base32',
     token: otp,
-    // window: 1,
+    window: 1,
   });
 };
-register = async (req, res, next) => {
+const register = async (req, res, next) => {
   // console.log(req.body);
   try {
     const { name, username, email, password, address, isVerified } = req.body;
@@ -64,12 +64,13 @@ register = async (req, res, next) => {
     }
     const otpSecret = generateOTPSecret();
     const otp = generateOTP(otpSecret);
-    console.log(otpSecret, otp)
+    console.log("OTP is :", otp)
+    const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
       name,
       username,
       email,
-      password,
+      password: hashedPassword,
       address,
       otpSecret,
       isVerified
