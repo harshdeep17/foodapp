@@ -19,14 +19,15 @@ async function startApp() {
         app.get('/', (req, res) => {
             res.send("connected")
         });
-        // Food.find({})
+        // await Food.find({})
         //     .then(foodItems => {
         //         console.log('Food items:', foodItems);
         //     })
         //     .catch(error => {
         //         console.error('Error getting food items:', error);
         //     });
-        // app.post('/register', userController.register);
+        app.post('/register', userController.register);
+        app.post('/verify', userController.verify);
         // app.use("/api/auth", authRoutes);
         const server = app.listen(process.env.PORT, () => {
             console.log(`server listening on port ${process.env.PORT}`);

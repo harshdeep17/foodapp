@@ -31,10 +31,10 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Password is required'],
         minlength: [4, 'Password must have at least 4 characters'],
     },
-    address: {
+    address: [{
         type: String,
         trim: true,
-    },
+    }],
     profile_path: {
         type: String,
     },
@@ -42,6 +42,11 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    isVerified: {
+        type: Boolean,
+        default: false,
+    },
+    otpSecret: String,
 });
 
 const User = mongoose.model('User', userSchema, 'users');
