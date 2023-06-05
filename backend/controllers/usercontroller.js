@@ -39,25 +39,26 @@ const generateOTP = (secret) => {
 };
 
 const validateOTP = (otp, secret) => {
+  console.log(otp, secret);
   return speakeasy.totp.verify({
     secret,
     encoding: 'base32',
     token: otp,
-    window: 1,
+    // window: 1,
   });
 };
 register = async (req, res, next) => {
   // console.log(req.body);
   try {
-    const { name, username, email, password, address } = req.body;
+    const { name, username, email, password, address, isVerified } = req.body;
 
-    const unverifiedUser = await User.find({ email, isVerified: false });
-    // console.log(unverifiedUser)
-    if (unverifiedUser) {
-      await User.deleteOne({ email, isVerified: false });
-    }
     const existingUser = await User.findOne({ $or: [{ email }, { username }] });
-    console.log(existingUser);
+
+    if (existingUser && existingUser.isVerified == false) {
+      await User.deleteOne({ $or: [{ email }, { username }] });
+    }
+
+    // console.log(existingUser);
     if (existingUser) {
       return res.status(400).json({ message: 'Email or username already registered' });
     }
@@ -70,7 +71,8 @@ register = async (req, res, next) => {
       email,
       password,
       address,
-      otpSecret
+      otpSecret,
+      isVerified
     });
     await newUser.save();
     await sendOTP(email, otp);
