@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
         trim: true,
     },
     profile_path: {
-        type: String,
+        type: Array,
     },
     isAdmin: {
         type: Boolean,
