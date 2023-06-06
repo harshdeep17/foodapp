@@ -3,7 +3,7 @@ import React from 'react'
 import Spinnerfoodmenu from './Spinnerfoodmenu';
 import Foodcart from './Foodcart';
 
-const Foodmenu = ({foodData, setFoodCategory, isfooddataloading, setFooddataloading}) => {
+const Foodmenu = ({foodData, foodCategory ,setFoodCategory, isfooddataloading, setFooddataloading}) => {
 
   console.log(foodData);
 
@@ -25,10 +25,14 @@ const Foodmenu = ({foodData, setFoodCategory, isfooddataloading, setFooddataload
           </p>
         </div>
         <div className="flex justify-center  flex-wrap gap-x-4 gap-y-2">
-          <div onClick={updatefoodcategory} className="bg-transparent px-4 py-2 border-2 border-yellow-500 hover:bg-yellow-500 hover:text-white text-yellow-500 rounded-md">all</div>
-          <div onClick={updatefoodcategory} className="bg-transparent px-4 py-2 border-2 border-yellow-500 hover:bg-yellow-500 hover:text-white text-yellow-500 rounded-md">food</div>
-          <div onClick={updatefoodcategory} className="bg-transparent px-4 py-2 border-2 border-yellow-500 hover:bg-yellow-500 hover:text-white text-yellow-500 rounded-md">snacks</div>
-          <div onClick={updatefoodcategory} className="bg-transparent px-4 py-2 border-2 border-yellow-500 hover:bg-yellow-500 hover:text-white text-yellow-500 rounded-md">beverages</div>
+          <div onClick={updatefoodcategory} className={`bg-transparent px-4 py-2    rounded-md 
+              ${foodCategory === 'all'? "bg-yellow-500 text-white" : "border-yellow-500 border-2 text-yellow-500"}`}>all</div>
+          <div onClick={updatefoodcategory} className={`bg-transparent px-4 py-2    rounded-md 
+              ${foodCategory === 'food'? "bg-yellow-500 text-white" : "border-yellow-500 border-2 text-yellow-500"}`}>food</div>
+          <div onClick={updatefoodcategory} className={`bg-transparent px-4 py-2    rounded-md 
+              ${foodCategory === 'snacks'? "bg-yellow-500 text-white" : "border-yellow-500 border-2 text-yellow-500"}`}>snacks</div>
+          <div onClick={updatefoodcategory} className={`bg-transparent px-4 py-2    rounded-md 
+              ${foodCategory === 'beverages'? "bg-yellow-500 text-white" : "border-yellow-500 border-2 text-yellow-500"}`}>beverages</div>
         </div>
         <div className="mt-4 grid grid-cols-1  md:mx-8  gap-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         { 

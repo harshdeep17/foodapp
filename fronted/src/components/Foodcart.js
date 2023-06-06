@@ -2,7 +2,6 @@ import React from 'react'
 import add_cart from "../assets/cart.png";  
 
 const Foodcart = ({fooddata}) => {
-
     const {food_desc, food_name, food_price, img_urls, __id: food_id } = fooddata; 
 
   return (

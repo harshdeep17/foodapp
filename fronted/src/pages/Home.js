@@ -46,7 +46,7 @@ const Home = () => {
   return (
     <>
       <Burger_Landing/>
-      <Foodmenu foodData={foodData} setFoodCategory={setFoodCategory} isfooddataloading={isfooddataloading}  setFooddataloading={setFooddataloading}/>
+      <Foodmenu foodData={foodData} foodCategory={foodCategory} setFoodCategory={setFoodCategory} isfooddataloading={isfooddataloading}  setFooddataloading={setFooddataloading}/>
       <Footer/>
     </>
   );
