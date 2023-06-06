@@ -5,6 +5,8 @@ require('dotenv').config();
 
 const app = express();
 const authRoutes = require("./routes/auth");
+const foodRoutes = require("./routes/food");
+
 
 const connectDB = require('./config/db');
 
@@ -19,6 +21,7 @@ async function startApp() {
         });
 
         app.use("/api/auth", authRoutes);
+        app.use("/api/food", foodRoutes);
        
         const server = app.listen(process.env.PORT, () => {
             console.log(`server listening on port ${process.env.PORT}`);
