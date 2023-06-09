@@ -1,5 +1,8 @@
 const User = require('../models/user.model');
+<<<<<<< HEAD
 const bcrypt = require("bcrypt");
+=======
+>>>>>>> 9421e6e42c3641ffc0552358ee3d81ffd657854c
 
 module.exports.register = async (req, res, next) => {
   // console.log(req.body);
@@ -7,22 +10,37 @@ module.exports.register = async (req, res, next) => {
     const { name, username, email, password, address } = req.body;
     const existingUser = await User.findOne({ $or: [{ email }, { username }] });
     if (existingUser) {
+<<<<<<< HEAD
       // console.log("exiting user");
       return res.json({ msg: 'Email or username already registered', status: false });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
+=======
+      return res.status(400).json({ message: 'Email or username already registered' });
+    }
+>>>>>>> 9421e6e42c3641ffc0552358ee3d81ffd657854c
     const newUser = new User({
       name,
       username,
       email,
+<<<<<<< HEAD
       password: hashedPassword,
+=======
+      password,
+>>>>>>> 9421e6e42c3641ffc0552358ee3d81ffd657854c
       address,
     });
     await newUser.save();
 
+<<<<<<< HEAD
     // console.log(newUser);
     res.json({ msg: `Welcome ${newUser.username}. you registered successfully`, status: true, user: newUser });
+=======
+    console.log(newUser);
+
+    res.status(201).json({ message: 'User registered successfully' });
+>>>>>>> 9421e6e42c3641ffc0552358ee3d81ffd657854c
   } catch (ex) {
     console.log(ex);
   }
@@ -39,10 +57,17 @@ module.exports.update_profile_pic = async (req, res, next) => {
       user[0].profile_path = profilePath;
  
       await user[0].save();
+<<<<<<< HEAD
       res.json({ msg: 'User profile update successfully', status: true });
     }
     else{
       res.json({msg: 'User not found', status: false});
+=======
+      res.status(201).json({ message: 'User profile update successfully' });
+    }
+    else{
+      res.status(400).json({msg: 'User not found'});
+>>>>>>> 9421e6e42c3641ffc0552358ee3d81ffd657854c
     }
   }
   catch(ex) {
@@ -50,6 +75,7 @@ module.exports.update_profile_pic = async (req, res, next) => {
   }
 }
 
+<<<<<<< HEAD
 module.exports.login = async (req, res, next) => {
   // console.log(req.body);
   try {
@@ -95,6 +121,8 @@ module.exports.update_profile_pic = async (req, res, next) => {
 }
 
 
+=======
+>>>>>>> 9421e6e42c3641ffc0552358ee3d81ffd657854c
 module.exports.update_profile_pic = async (req, res, next) => {
   console.log(req.body);
   try{
@@ -106,7 +134,11 @@ module.exports.update_profile_pic = async (req, res, next) => {
       existingUser[0]=updateUser;
  
       await existingUser[0].save();
+<<<<<<< HEAD
       res.status(201).json({ msg: 'User details update successfully' });
+=======
+      res.status(201).json({ message: 'User details update successfully' });
+>>>>>>> 9421e6e42c3641ffc0552358ee3d81ffd657854c
     }
     else{
       res.status(400).json({msg: 'User not found'});

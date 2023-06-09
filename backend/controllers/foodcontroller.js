@@ -10,6 +10,7 @@ module.exports.foodmenu = async (req, res, next)=>{
         // console.log(error);
         return res.status(500).json("msg", error);
     }
+<<<<<<< HEAD
 }
 
 module.exports.foodproduct = async (req, res, next)=>{
@@ -32,3 +33,7 @@ module.exports.foodproduct = async (req, res, next)=>{
     }
 
 } 
+=======
+
+}
+>>>>>>> 9421e6e42c3641ffc0552358ee3d81ffd657854c
