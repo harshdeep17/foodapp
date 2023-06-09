@@ -1,55 +1,13 @@
-import React, { useState } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
-import Burgerlogo from "../assets/burgerlogo1.png";
-import Userlogo from "../assets/userlogo.png";
-import Cartlogo from "../assets/shopping-cart.png";
-import Whishlistlogo from "../assets/wishlist.png";
+import React from "react";
 import Homeburgerimage from "../assets/homeburger.png";
-import Formmodel from "./Formmodel";
+import Navbar from "./Navbar";
 
 const Burger_Landing = () => {
-  const [openModal, setOpenModal] = useState(false);
-
+  
   return (
     <>
       <div className="bg-yellow-500  bg-opacity-80 relative overflow-auto ">
-       <Formmodel openModal={openModal} setOpenModal={setOpenModal}/>
-        <div className="flex bg-opacity-50 z-10   bg-cyan-600 justify-between items-center px-6 py-4 sm:px-12">
-          <div className="text-2xl sm:text-4xl relative">
-            <GiHamburgerMenu />
-            <div className="bg-pink-600 hidden top-8 absolute">
-              <ul className="">
-                <li>profile</li>
-                <li>about</li>
-                <li>home</li>
-              </ul>
-            </div>
-          </div>
-          <div>
-            <img src={Burgerlogo} className="w-20  object-cover" alt="" />
-          </div>
-          <div>
-            <ul className="flex items-center gap-x-3 sm:gap-x-8">
-              <li>
-                <a href="/cart">
-                  <img src={Whishlistlogo} alt="" className="w-10" />
-                </a>
-              </li>
-              <li>
-                <a href="/whishlist">
-                  <img src={Cartlogo} alt="" className="w-10" />
-                </a>
-              </li>
-              <li
-                onClick={() => {
-                  setOpenModal(!openModal);
-                }}
-              >
-                <img src={Userlogo} alt="" className="w-10" />
-              </li>
-            </ul>
-          </div>
-        </div>
+       <Navbar />
         <div className="grid grid-cols-1 sm:grid-cols-2 mt-8 sm:py-4">
           <div className="sm:my-auto">
             <h1 className="text-center text-white font-serif font-bold sm:text-5xl text-3xl">

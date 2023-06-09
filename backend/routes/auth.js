@@ -1,4 +1,5 @@
-const { register, update_profile_pic, login} = require("../controllers/usercontroller");
+const { register, update_profile_pic} = require("../controllers/userRegisterController");
+const { login } = require("../controllers/userLoginController");
 
   
 const router = require("express").Router();
