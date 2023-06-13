@@ -10,7 +10,7 @@ const Cart = () => {
       <Navbar/>
     <div className='h-screen bg-slate-800'>
       <h1 className='text-white text-2xl px-8 py-4'>Woo hoo! let`s complete your order, shall we?</h1>
-      <div className='grid grid-cols-3 mx-20 h-4/5'>
+      <div className='grid grid-cols-3 mx-20 gap-x-5  h-4/5'>
         <div className='col-span-2 flex-col row-span-6 mt-4 space-y-4 h-3/4 overflow-auto'>
           <div className='grid grid-cols-7 border-b-2 border-stone-700 pb-4'>
               <div className='flex justify-center items-center'>
@@ -152,7 +152,6 @@ const Cart = () => {
           </div>
         
         </div>
-        <div className=''>
         <ul className='bg-stone-900  flex-col py-8 space-y-8 '>
           <li className='flex justify-center'> 
           <input type="text" className='bg-transparent p-2 border-2 border-black focus:border-yellow-500 text-white cursor-pointer outline-none rounded-lg' 
@@ -162,8 +161,6 @@ const Cart = () => {
           <button className='px-4 py-2 text-black  texxt-2xl bg-yellow-500 rounded-md'>Prodessed To Buy</button>
           </li>
          </ul>
-        </div>
-        
       </div>
     </div>
     </>
