@@ -1,8 +1,12 @@
 import React from 'react'
 import add_cart from "../assets/cart.png";  
+import { useDispatch, useSelector } from "react-redux";
+import { addItemAsync } from '../features/cart/cartSlice';
 
-const Foodcart = ({fooddata}) => {
-    const {food_desc, food_name, food_price, img_urls, __id } = fooddata; 
+const Foodcard = ({fooddata}) => {
+
+  const dispatch = useDispatch(); 
+  const {food_desc, food_name, food_price, img_urls, __id } = fooddata; 
 
   return (
     <>
@@ -17,11 +21,11 @@ const Foodcart = ({fooddata}) => {
             </div>
             <ul className="flex px-4 py-2 justify-between items-center">
               <li><span><img src="" alt="" /></span>{food_price}</li>
-              <li><img src={add_cart} className="w-10" alt="" /></li>
+              <li><img src={add_cart} onClick={()=>dispatch(addItemAsync(fooddata))} className="w-10" alt=""   /></li>
             </ul>
           </div>
     </>
   )
 }
 
-export default Foodcart
+export default Foodcard

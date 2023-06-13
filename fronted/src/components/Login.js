@@ -1,11 +1,15 @@
 import axios from "axios";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUserAsync } from "../features/auth/authSlice";
 
 const Login = ({ loginFormObject, selectFormType, setOpenModal, openModal }) => {
 
     const formRef = useRef(null);
+    const dispatch = useDispatch();
+    const reduxstate = useSelector((state) => state.auth);
     const formfields = {
       Username: "",
       Password: "",
@@ -27,33 +31,30 @@ const Login = ({ loginFormObject, selectFormType, setOpenModal, openModal }) => 
     const handleLoginSubmit = async (e) =>{
         e.preventDefault();
         const { Email, Password } = values;
-        try{
-            const {data} = await axios.post("http://localhost:4000/api/auth/login/", {
-                password: Password,
-                email: Email,
-              })
-          
-            if (data.status === false) {
-                // console.log("user exits");
-              toast.error(data.msg, toastOptions);
-            }
-        
-            if (data.status === true) {
-              // console.log("logged id");
-              // console.log(data);
-              localStorage.setItem(
-                "food-app-current-user",
-                JSON.stringify(data.user)
-                ); 
-              formRef.current.reset();
-              setOpenModal(!openModal)
-              // toast.success(data.msg, toastOptions);
-            }
-        }
-        catch (e) {
-            console.log(e);
-        }
+        dispatch(loginUserAsync({password: Password,email: Email}));
     }
+
+    useEffect(() => {
+      if (reduxstate.status === "idle") {
+        if (reduxstate.loginStatus === false) {
+          // console.log("user exits");
+        toast.error(reduxstate.msg, toastOptions);
+      }
+  
+      if (reduxstate.loginStatus === true) {
+        // console.log("logged id");
+        // console.log(data);
+        localStorage.setItem(
+          "food-app-current-user",
+          JSON.stringify(reduxstate.user)
+          ); 
+        formRef.current.reset();
+        setOpenModal(!openModal)
+        // toast.success(data.msg, toastOptions);
+      }
+    }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reduxstate]);
   
   return (
     <>

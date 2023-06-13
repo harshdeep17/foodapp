@@ -1,11 +1,19 @@
 const Food = require('../models/food.model');
+const mongoose = require('mongoose');
 
 module.exports.foodmenu = async (req, res, next)=>{
     try{
+        const category = req.params.category;
         const allfood = await Food.find();
+        // const allfood = JSON.parse(res);
         // console.log(allfood);
-
-        return res.status(201).json(allfood);
+        if(category === "all"){
+            return res.status(201).json(allfood);
+        }
+        else{
+            const food_by_category = allfood.filter(food => food.toJSON().food_type === category)
+            return res.status(201).json(food_by_category);
+        }
     } catch (error) {
         // console.log(error);
         return res.status(500).json("msg", error);
@@ -14,21 +22,15 @@ module.exports.foodmenu = async (req, res, next)=>{
 
 module.exports.foodproduct = async (req, res, next)=>{
     try{
-        const foodId = req.params.foodId;
-        // const ObjectId = require('mongodb').ObjectId; 
-        // const foodObjectID = new ObjectId(foodId);
+        const foodId = req.params.id;
 
-        // console.log(foodObjectID);
-        const foodProduct = await Food.findOne({ _id: foodId})
-        .catch((err)=>{
-            console.error(err);
-        })
-        console.log(foodProduct);
+        const foodProduct = await Food.find({_id: new mongoose.Types.ObjectId(foodId)})
         
-        return res.status(200).json(foodProduct);
+        // console.log(foodProduct);
+        
+        return res.status(201).json({foodProduct: foodProduct, msg: "successfully fetched"});
     } catch (error) {
         console.log(error);
-
     }
 
 } 
