@@ -1,7 +1,6 @@
-import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUserAsync } from "../features/auth/authSlice";
 
@@ -77,7 +76,6 @@ const Login = ({ loginFormObject, selectFormType, setOpenModal, openModal }) => 
               {selectFormType}
         </button>
     </form>
-      <ToastContainer/>
   </>
   );
 };

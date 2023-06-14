@@ -6,8 +6,8 @@ const Burger_Landing = () => {
   
   return (
     <>
-      <div className="bg-yellow-500  bg-opacity-80 relative overflow-auto ">
-       <Navbar />
+      {/* <div className="bg-yellow-500  bg-opacity-80 relative overflow-auto "> */}
+       {/* <Navbar /> */}
         <div className="grid grid-cols-1 sm:grid-cols-2 mt-8 sm:py-4">
           <div className="sm:my-auto">
             <h1 className="text-center text-white font-serif font-bold sm:text-5xl text-3xl">
@@ -37,7 +37,7 @@ const Burger_Landing = () => {
             <img src={Homeburgerimage} className="sm:w-96" alt="" />
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </>
   );
 };

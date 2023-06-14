@@ -4,10 +4,11 @@ import Burgerlogo from "../assets/burgerlogo1.png";
 import Userlogo from "../assets/userlogo.png";
 import Cartlogo from "../assets/shopping-cart.png";
 import Whishlistlogo from "../assets/wishlist.png";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import Formmodel from "./Formmodel";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../features/auth/authSlice";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -25,12 +26,12 @@ const Navbar = () => {
   };
 
   const handleModal = ()=>{
-    console.log(reduxState.logoutStatus);
+    // console.log(reduxState.logoutStatus);
       if(reduxState.logoutStatus)
         setOpenModal(!openModal)
       else{
         dispatch(logoutUser());
-        // toast.error("You are logged out", toastOptions);
+        toast.error("You are logged out", toastOptions);
       }
     };
 
@@ -54,19 +55,21 @@ const Navbar = () => {
           </div>
         </div>
         <div>
+        <Link to="/"> 
           <img src={Burgerlogo} className="w-20  object-cover" alt="" />
+        </Link>
         </div>
         <div>
           <ul className="flex items-center gap-x-3 sm:gap-x-8">
             <li>
-              <a href="/whishlist">
+              <Link to="/whishlist">
                 <img src={Whishlistlogo} alt="" className="w-10" />
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/cart">
+              <Link to="/cart">
                 <img src={Cartlogo} alt="" className="w-10" />
-              </a>
+              </Link>
             </li>
             <li onClick={handleModal}>
               <img src={Userlogo} alt="" className="w-10 mx-auto"/>
