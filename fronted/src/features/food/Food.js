@@ -10,6 +10,7 @@ const Food = () => {
   const dispatch = useDispatch();
   const state = useSelector((state)=>state.food);
   const foodData = state.foods;
+  console.log(foodData);
   const isfooddataloading = state.status;
 
   // console.log(isfooddataloading);

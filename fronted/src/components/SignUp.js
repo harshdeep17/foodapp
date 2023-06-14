@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Userlogo from "../assets/userlogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import { registerUserAsync } from "../features/auth/authSlice";
 
 const SignUp = ({ signUpFormObject, selectFormType, setOpenModal, openModal,}) => {
@@ -137,7 +137,6 @@ const SignUp = ({ signUpFormObject, selectFormType, setOpenModal, openModal,}) =
           {selectFormType}
         </button>
       </form>
-      <ToastContainer />
     </>
   );
 };
